@@ -1,3 +1,4 @@
+
 /*ZONK Adventure Game: 
  * @Author Janna Gilleman, Ryan Emerson, Chelsea Fowler
  * @Date Fall 22
@@ -53,8 +54,10 @@ public class Player {
       location++;
       if (location < 2) {
         System.out.println("You are now in the next car");
+        lookAround();
       }
       if (location == 2) {
+        lookAround();
         System.out.println("You are immediately surprised by the conductor, who grabs your shoulders and shakes you...");
         talkTo("CONDUCTOR");
       }
@@ -67,6 +70,7 @@ public class Player {
     if (location > 0) {
       location--;
       System.out.println("You have moved back a car.");
+      lookAround();
     } else {
       System.out.println("You are in the furthest back car. You cannot move backwards.");
     }
@@ -75,6 +79,7 @@ public class Player {
   public void exitTrain() { 
     location++;
     System.out.println("You are now outside of the train");
+    lookAround();
   }
 
   public void talkTo(String name) {
@@ -91,9 +96,10 @@ public class Player {
     if (location >= 0 && location <= 3) {
       if (location == 0) { //description of car 0
         System.out.println(
-            "You are in the main cabin of the train. The seats are upholstered with a comfortable velvet purple fabric, and there is a calm air about. "
-                + "Around you there are people seated:" + train.cars[location].carPassengers.keySet() + ". "
-                + "There is a key card on the ground where the conductor dropped it, and in your lap there is a pair of glasses.");
+            "You are in the main cabin of the train. The seats are upholstered with a comfortable velvet purple fabric, and there is a calm air about. Around you there are people seated:" 
+          + train.cars[location].carPassengers.keySet() 
+          + ". There is a key card on the ground where the conductor dropped it, and in your lap there is a pair of glasses. " 
+          + train.cars[location].printItems());
       }
       if (location == 1) { //description of car 1
         System.out.println(
@@ -116,10 +122,41 @@ public class Player {
   public void pickUp(String itemName) {
     if (train.cars[this.location].carItems.containsKey(itemName)) {
       Item i = train.cars[this.location].carItems.get(itemName);
-      inventory.put(itemName, i);
+      inventory.put(itemName, i); //place into player inventory
+      train.cars[this.location].carItems.remove(itemName); //remove from carItems
       System.out.println("You pocket the " + itemName + ".");
     } else {
-      System.out.println("Item not found.");
+      System.out.println("Please enter valid item name.");
+    }
+  }
+  public void drop(String itemName) {
+    if (this.inventory.containsKey(itemName)) {
+      Item i = inventory.get(itemName); // RYAN: does this happen in the right order? or is it necessary?
+      this.inventory.remove(itemName); //remove from inventory
+      train.cars[this.location].carItems.put(itemName, i); //place back in car
+    } else {
+      System.out.println("Please enter valid item name.");
+    }
+  }
+  //TODO: check if this drop() and new pickUp() feature works
+
+  //this is how i fixed it. ya like what ur doing
+  public void inspect(String itemName) {
+    if (train.cars[this.location].carItems.containsKey(itemName) || inventory.containsKey(itemName)) {
+      if (train.cars[this.location].carItems.containsKey(itemName)) {
+        Item i = train.cars[this.location].carItems.get(itemName);
+        System.out.println(i.description); //prints item desc
+      }
+      if (inventory.containsKey(itemName)) {
+        Item i = inventory.get(itemName);
+        System.out.println(i.description); //prints item desc
+      }
+      if (train.cars[location].carPassengers.containsKey(itemName)) {
+        Passenger p = train.cars[this.location].carPassengers.get(itemName);
+        System.out.println(p.description); //prints passenger descr
+      }
+    } else { 
+      System.out.println("There is no item called " + itemName + " here");
     }
   }
 

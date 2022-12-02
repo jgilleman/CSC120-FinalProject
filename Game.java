@@ -51,13 +51,24 @@ public class Game {
     // Main Game Loop
     while (stillPlaying == true) {
       userResponse = userInput.nextLine().toUpperCase();
-      if (userResponse.contains("EXIT GAME") || userResponse.contains("END GAME") || userResponse.contains("QUIT")
-          || userResponse.contains("LOOK AROUND") || userResponse.contains("TALK TO")
-          || userResponse.contains("PICK UP") || userResponse.contains("NEXTCAR") || userResponse.contains("NEXT CAR")
-          || userResponse.contains("FORWARD") || userResponse.contains("PREVIOUSCAR")
-          || userResponse.contains("PREVIOUS CAR") || userResponse.contains("BACKWARD") ||
-          userResponse.contains("CHECK POCKETS") ||
-          userResponse.contains("EXIT TRAIN") || userResponse.contains("LEAVE TRAIN") || userResponse.contains("JUMP TRAIN")) {
+      if (userResponse.contains("EXIT GAME") 
+          || userResponse.contains("END GAME") 
+          || userResponse.contains("QUIT")
+          || userResponse.contains("LOOK AROUND") 
+          || userResponse.contains("TALK TO")
+          || userResponse.contains("PICK UP") 
+          || userResponse.contains("DROP")
+          || userResponse.contains("INSPECT")
+          || userResponse.contains("NEXTCAR") 
+          || userResponse.contains("NEXT CAR")
+          || userResponse.contains("FORWARD") 
+          || userResponse.contains("PREVIOUSCAR")
+          || userResponse.contains("PREVIOUS CAR")
+          || userResponse.contains("BACKWARD")
+          || userResponse.contains("CHECK POCKETS") 
+          || userResponse.contains("EXIT TRAIN") 
+          || userResponse.contains("LEAVE TRAIN") 
+          || userResponse.contains("JUMP TRAIN")) { 
         if (userResponse.contains("EXIT GAME") || userResponse.contains("END GAME") || userResponse.contains("QUIT")) {
           System.out.println("You've ended your game of ZONK, I hope you travel with us again!");
           stillPlaying = false;
@@ -66,10 +77,8 @@ public class Game {
           player.lookAround();
         }
         if (userResponse.contains("TALK TO")) {
-          String name = userResponse.split(" ")[2]; // split user response at every space and take the third word. this
-                                                    // should be all uppercase
-          if (!train.cars[player.location].carPassengers.containsKey(name)) { // if name not in carPassengers, print
-                                                                              // error
+          String name = userResponse.split(" ")[2]; // split user response at every space, take the third word, should be all uppercase
+          if (!train.cars[player.location].carPassengers.containsKey(name)) { // if name not in carPassengers, print  error
             System.out.println("Please enter valid passenger.");
           } else {
             player.talkTo(name);
@@ -77,11 +86,15 @@ public class Game {
         }
         if (userResponse.contains("PICK UP")) {
           String name = userResponse.split(" ")[2];
-          if (!train.cars[player.location].carItems.containsKey(name)) {
-            System.out.println("Please enter valid item name.");
-          } else {
-            player.pickUp(name);
-          }
+          player.pickUp(name);
+        }
+        if (userResponse.contains("DROP")) { 
+          String name = userResponse.split(" ")[1];
+          player.drop(name);
+        }
+        if (userResponse.contains("INSPECT")) {
+          String name = userResponse.split(" ")[1];
+          player.inspect(name);
         }
         if (userResponse.contains("NEXTCAR") || userResponse.contains("NEXT CAR") || userResponse.contains("FORWARD")) {
           if (player.holding("KEYCARD") && player.metPassengers()) {
@@ -91,8 +104,7 @@ public class Game {
                 "The party is still young! You haven't fully mingled with the passengers yet");
           }
         }
-        if (userResponse.contains("PREVIOUSCAR") || userResponse.contains("PREVIOUS CAR")
-            || userResponse.contains("BACKWARD")) {
+        if (userResponse.contains("PREVIOUSCAR") || userResponse.contains("PREVIOUS CAR") || userResponse.contains("BACKWARD")) {
           if (player.holding("KEYCARD")) {
             player.previousCar();
           } else {

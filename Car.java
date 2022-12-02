@@ -34,4 +34,18 @@ public class Car {
         Item i = new Item(name, description);
         carItems.put(i.name, i);
     }
+
+    public String printItems() {
+      if (carItems.size() == 0) {
+        //System.out.println("No items in this car.");
+        return "No items in this car.";
+      }
+      if (carItems.size() == 1) {
+        //System.out.println("The item in this car is: " + carItems.keySet());
+        return "1 item in this car.";
+      } else { // (carItems.size() > 1) {
+        //System.out.println("The items in this car are: " + carItems.keySet());
+        return "more than 1 item in this car.";
+      }
+    }
 }
