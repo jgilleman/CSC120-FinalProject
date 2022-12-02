@@ -20,7 +20,6 @@ Maybe helpful resources: https://www.youtube.com/watch?v=j99EeUjvLVQ
 
 
 Stuff to do:
-    -implement checkPockets which prints out the hashmap inventory
 
     lookAround():
     - fill out description of cars in player lookAround() method. car 1 is populated with passengers, is kinda nice looking, car two is empty like for storage and kinda decrepid. Car three is   almost at the front of the train. Dont know what vibe it should be giving off. you should notice a door that leads outside in this car though.
@@ -28,3 +27,14 @@ Stuff to do:
     <<fixed>>-fix bug with lookAround() where the else statements always gets called in addition to the correct if statement
 
     -end condition. what you see as you are outside the cabin. cat and stuff.
+
+    -Drop item (into same car that ur in)
+    -user laser
+    -meet conductor
+    -prompt with the end choice (go from there)
+    -java doc
+
+    Stretch goals:
+    -if u remove cat passener diologues update
+    -general use function
+    -more items/things to do
