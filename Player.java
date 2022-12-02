@@ -1,4 +1,3 @@
-
 /*ZONK Adventure Game: 
  * @Author Janna Gilleman, Ryan Emerson, Chelsea Fowler
  * @Date Fall 22
@@ -39,7 +38,7 @@ public class Player {
   }
 
   public boolean metPassengers() {
-    if (k > train.cars[location].carPassengers.size()-1) {
+    if (k >= train.cars[location].carPassengers.size()) {
       return true;
     } else {
       return false;
@@ -50,15 +49,17 @@ public class Player {
   // location=0 is the furthest back car (where the player starts). The front-most
   // car is car 2.
   public void nextCar() {
-    if (location < 2) {
+    if (location <= 1) {
       location++;
-      if (location <= 2) {
-        System.out.println("You are now in the next car.");
-      } else {
-        System.out.println("You are now outside of the train.");
+      if (location < 2) {
+        System.out.println("You are now in the next car");
+      }
+      if (location == 2) {
+        System.out.println("You are immediately surprised by the conductor, who grabs your shoulders and shakes you...");
+        talkTo("CONDUCTOR");
       }
     } else {
-      System.out.println("You are in the front-most car. You cannot move forward.");
+      System.out.println("You are in the front-most car. You cannot move forward within the train.");
     }
   }
 
@@ -71,8 +72,9 @@ public class Player {
     }
   }
 
-  public void exitTrain() {
-    nextCar();
+  public void exitTrain() { 
+    location++;
+    System.out.println("You are now outside of the train");
   }
 
   public void talkTo(String name) {
@@ -89,9 +91,9 @@ public class Player {
     if (location >= 0 && location <= 3) {
       if (location == 0) { //description of car 0
         System.out.println(
-            "You are in the main cabin of the train. The seats are upholstered with a comfortable velvet purple, and there is a calm air about. "
+            "You are in the main cabin of the train. The seats are upholstered with a comfortable velvet purple fabric, and there is a calm air about. "
                 + "Around you there are people seated:" + train.cars[location].carPassengers.keySet() + ". "
-                + "There is a key card on the ground where the conductor dropped it, as well.");
+                + "There is a key card on the ground where the conductor dropped it, and in your lap there is a pair of glasses.");
       }
       if (location == 1) { //description of car 1
         System.out.println(
@@ -99,7 +101,7 @@ public class Player {
       }
       if (location == 2) { //description of car 2
         System.out.println(
-            "You are standing in the locomotive--the engine room of the train. It is extremely loud, and coal is glowing red and billowing smoke from out of the furnace. There is a door to jump from the train, and the conductor, in great distress, is standing at the window. Through the window you see a great furry beast completely obstructing the tracks, and strange wooden poles reaching from the ground up past where you can see.");
+            "You are standing in the locomotive--the engine room of the train. It is extremely loud, and coal is glowing red and billowing smoke from out of the furnace. There is a door to exit the train, and the conductor, in great distress, is standing at the window. Through the window you see a great furry beast completely obstructing the tracks, and strange wooden poles reaching from the ground up past where you can see.");
       }
       if (location == 3) { //description of outside
         System.out.println(
