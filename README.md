@@ -21,25 +21,26 @@ Maybe helpful resources: https://www.youtube.com/watch?v=j99EeUjvLVQ
 
 Stuff to do:
 
-    lookAround():
     <<done>>- fill out description of cars in player lookAround() method. car 1 is populated with passengers, is kinda nice looking, car two is empty like for storage and kinda decrepid. Car three is   almost at the front of the train. Dont know what vibe it should be giving off. you should notice a door that leads outside in this car though.
-    -lookAround should have a condition for if youre outside the cabin. maybe then location=3. might have to update next car also, idk yet.
+    <<done>>lookAround should have a condition for if youre outside the cabin. maybe then location=3. might have to update next car also, idk yet.
     <<fixed>>-fix bug with lookAround() where the else statements always gets called in addition to the correct if statement
 
-    -getPassenger doesnt work--prints out memory address
+    <<done>>getPassenger doesnt work--prints out memory address<- its fine this is just for a separate command, not for game play>
     <<fixed>>-can call nextCar from the locomotive car...made exittrain its own thing so it doesnt get dealt with in next car
-    -end condition. what you see as you are outside the cabin. cat and stuff.
-    -cant analyze anthing. install inspect()
-    cant leave train
+    <<done>>end condition. what you see as you are outside the cabin. cat and stuff.
+    <<done>>-cant analyze anthing. install inspect()
+    <<done>> leave train
     -when a passenger isnt in the same ar, it still says please enter valid passenger. do something about it or not?
-    -Drop item (into same car that ur in)
+    <<done>>-Drop item (into same car that ur in)
     -user laser
-    -meet conductor
+    <<done>>meet conductor
     -prompt with the end choice (go from there)
     -java doc
+    -update command and help list
 
     Stretch goals:
-    -if u remove cat passener diologues update
+    -if u remove cat passener dialogues update
     -general use function
     -more items/things to do
     -ASCII art train drawing in intro
+    -breaking and jumping out the window ends game

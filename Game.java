@@ -18,7 +18,6 @@ public class Game {
     player.methods.add("TALK TO __");
     player.methods.add("PICK UP __");
 
-    // (uncomment this stuff when we have a functioning gameloop)
     boolean stillPlaying = true;
     Scanner userInput = new Scanner(System.in);
     String userResponse = "";

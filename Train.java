@@ -10,7 +10,5 @@ public class Train {
         cars[0] = new Car();
         cars[1] = new Car();
         cars[2] = new Car();
-    
-        System.out.println("The train has been built.");
     }
 }

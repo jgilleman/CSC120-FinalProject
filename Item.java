@@ -10,6 +10,5 @@ public class Item {
     public Item(String name, String description) {
         this.name = name;
         this.description = description;
-        System.out.println("A " + name + " has been built!");
     }
 }

@@ -12,9 +12,7 @@ public class Car {
     public boolean doorOpen = false;
 
     //Constructor makes a new car
-    public Car() {
-        System.out.println("A new car has been built.");
-    }
+    public Car(){}
 
     //Method getter for accessing information about any passenger by name
     public Passenger getPassenger(String name) {
@@ -26,8 +24,6 @@ public class Car {
     public void addPassenger(String name, String description, String dialogue) {
         Passenger p = new Passenger(name, description, dialogue); //make a new passenger and temporarily label it passenger "p"
         carPassengers.put(p.name, p); //add the new passenger to the hashmap. from here-on-out it will be labelled by its name, not p, since the hashmap key=name
-
-        System.out.println(name + " has " + description);
     }
 
     public void addItem(String name, String description){

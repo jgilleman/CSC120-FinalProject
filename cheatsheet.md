@@ -12,12 +12,7 @@ TALK TO __
 PICK UP __
 
 
-nextCar()
-previousCar()
-talkTo(String name)
-public void lookAround()
-public void pickUp(String itemName)
-public void checkPockets()
+
 
 # SPOILER ALERT
 

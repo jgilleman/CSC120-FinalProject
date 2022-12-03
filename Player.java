@@ -17,8 +17,6 @@ public class Player {
   public Player(String name, int numPockets, Train train) {
     this.train = train;
     location = 0;
-    System.out.println(
-        "A new player has been built. Their name is " + name + ". They have " + numPockets + "inventory spaces.");
   }
 
   // for loading stuff into the players pockets at the start of the game
@@ -134,29 +132,29 @@ public class Player {
       Item i = inventory.get(itemName); // RYAN: does this happen in the right order? or is it necessary?
       this.inventory.remove(itemName); //remove from inventory
       train.cars[this.location].carItems.put(itemName, i); //place back in car
+      System.out.println("You have dropped the " + itemName + ".");
     } else {
       System.out.println("Please enter valid item name.");
     }
   }
-  //TODO: check if this drop() and new pickUp() feature works
 
-  //this is how i fixed it. ya like what ur doing
-  public void inspect(String itemName) {
-    if (train.cars[this.location].carItems.containsKey(itemName) || inventory.containsKey(itemName)) {
-      if (train.cars[this.location].carItems.containsKey(itemName)) {
-        Item i = train.cars[this.location].carItems.get(itemName);
-        System.out.println(i.description); //prints item desc
+  public void inspect(String name) {
+    //if item/person exists in game
+    if (train.cars[this.location].carItems.containsKey(name) || inventory.containsKey(name) || train.cars[this.location].carPassengers.containsKey(name)) {
+      if (train.cars[this.location].carItems.containsKey(name)) { //exists: if item in current car
+        Item i = train.cars[this.location].carItems.get(name);
+        System.out.println(i.description);
       }
-      if (inventory.containsKey(itemName)) {
-        Item i = inventory.get(itemName);
-        System.out.println(i.description); //prints item desc
+      if (inventory.containsKey(name)) { //exists: if item in inventory
+        Item i = inventory.get(name);
+        System.out.println(i.description);
       }
-      if (train.cars[location].carPassengers.containsKey(itemName)) {
-        Passenger p = train.cars[this.location].carPassengers.get(itemName);
-        System.out.println(p.description); //prints passenger descr
+      if (train.cars[location].carPassengers.containsKey(name)) { //exists: if person in carPassengers
+        Passenger p = train.cars[this.location].carPassengers.get(name);
+        System.out.println(p.description);
       }
-    } else { 
-      System.out.println("There is no item called " + itemName + " here");
+    } else { //doesn't exist
+      System.out.println("There is no item called " + name + " here");
     }
   }
 
