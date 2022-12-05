@@ -10,9 +10,14 @@ LOOK AROUND
 CHECK POCKETS
 TALK TO __
 PICK UP __
+>>will update this later<<
 
-
-
+nextCar()
+previousCar()
+talkTo(String name)
+public void lookAround()
+public void pickUp(String itemName)
+public void checkPockets()
 
 # SPOILER ALERT
 
