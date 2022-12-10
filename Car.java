@@ -11,27 +11,27 @@ public class Car {
   HashMap<String, Passenger> carPassengers = new HashMap<String, Passenger>();
   HashMap<String, Item> carItems = new HashMap<String, Item>();
   ArrayList<String> methods = new ArrayList<String>();
-  public boolean doorOpen = false;
-  public String carItemsString;
+  public boolean door_open = false;
+  public String car_items_string;
 
   //Constructor makes a new car
   public Car(){}
 
   //Method getter for accessing information about any passenger by name
   public Passenger getPassenger(String name) {
-      Passenger p = carPassengers.get(name);
-      return p;
+    Passenger p = carPassengers.get(name);
+    return p;
   }
 
   //Method adds passengers to the hashmap
   public void addPassenger(String name, String description, String dialogue) {
-      Passenger p = new Passenger(name, description, dialogue); //make a new passenger and temporarily label it passenger "p"
-      carPassengers.put(p.name, p); //add the new passenger to the hashmap. from here-on-out it will be labelled by its name, not p, since the hashmap key=name
+    Passenger p = new Passenger(name, description, dialogue); //make a new passenger and temporarily label it passenger "p"
+    carPassengers.put(p.name, p); //add the new passenger to the hashmap. from here-on-out it will be labelled by its name, not p, since the hashmap key=name
   }
 
   public void addItem(String name, String description){
-      Item i = new Item(name, description);
-      carItems.put(i.name, i);
+    Item i = new Item(name, description);
+    carItems.put(i.name, i);
   }
 
   public String printItems() {
@@ -40,11 +40,11 @@ public class Car {
       return "No items in this car.";
     }
     if (carItems.size() == 1) {
-      carItemsString = "The item in this car is: " + carItems.keySet();
-      return carItemsString;
+      car_items_string = "The item in this car is: " + carItems.keySet();
+      return car_items_string;
     } else { // (carItems.size() > 1) {
-      carItemsString = "The items in this car are: " + carItems.keySet();
-      return carItemsString;
+      car_items_string = "The items in this car are: " + carItems.keySet();
+      return car_items_string;
     }
   }
 }

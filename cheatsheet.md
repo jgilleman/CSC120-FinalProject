@@ -23,4 +23,6 @@ public void checkPockets()
 
 If your game includes challenges that must be overcome to win, also list them below.
 
-Challenge 1: Pick up keycard to be able to move to the next cars.
+Challenge 1: Talk to three passengers and pick up keycard to be able to move to the next cars.
+Challenger 2: Choose to exit the train or stay on board.
+Challenger 3: If exit train, use laser pointer.

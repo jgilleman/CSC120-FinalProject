@@ -13,10 +13,4 @@ public class Passenger {
         this.description = description;
         this.dialogue = dialogue;
     }
-
-    
-}
-
-
-
-    
+}  
