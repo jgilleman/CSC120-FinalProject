@@ -1,11 +1,12 @@
-/*ZONK Adventure Game: 
+/** ZONK Adventure Game: 
  * @Author Janna Gilleman, Ryan Emerson, Chelsea Fowler
  * @Date Fall 22
  * Class Train creates a train that has three cars, and keeps track of them in an array called "cars"
 */
 public class Train {
   public Car[] cars = new Car[4];
-
+  
+  /** Constructor makes an instance of object Train */
   public Train() {
     cars[0] = new Car();
     cars[1] = new Car();
