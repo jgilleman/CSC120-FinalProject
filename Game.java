@@ -1,4 +1,6 @@
-/** ZONK Adventure Game: 
+/**
+ * ZONK Adventure Game: 
+ *
  * @Author Janna Gilleman, Ryan Emerson, Chelsea Fowler
  * @Date Fall 22
  * Class Game runs the main game
@@ -11,7 +13,7 @@ import java.util.List;
 /* Class Game runs the game */
 public class Game {
 
-  /*
+  /**
    * Method Main
    * 
    * @param String[] args

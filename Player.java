@@ -1,4 +1,5 @@
-/** ZONK Adventure Game: 
+/**
+ * ZONK Adventure Game: 
  * @Author Janna Gilleman, Ryan Emerson, Chelsea Fowler
  * @Date Fall 22
  * Class Player. The user can call all these methods. That's how they play the game.
@@ -13,39 +14,51 @@ public class Player {
   int n_convos; // how many times you've talked to a passenger
   boolean ultimate_car = false;
   boolean win_zonk = false;
-  /** Constructor for player object
-  * @param name String holds players name
-  * @param numPockets Int holds number of inventory spaces of player
-  * @param train Instance of object Train
-  */
+
+  /**
+   * Constructor for player object
+   * 
+   * @param name       String holds players name
+   * @param numPockets Int holds number of inventory spaces of player
+   * @param train      Instance of object Train
+   */
   public Player(String name, int numPockets, Train train) {
     this.train = train;
     location = 0;
   }
-  /** Method for loading stuff into the players pockets at the start of the game
-  * @param name string name of object to give player 
-  * @param description string describing the object
-  */
+
+  /**
+   * Method for loading stuff into the players pockets at the start of the game
+   * 
+   * @param name        string name of object to give player
+   * @param description string describing the object
+   */
   public void givePlayer(String name, String description) {
     Item i = new Item(name, description); // i is the ever-new item
     inventory.put(i.name, i); // store i in the hashmap with its name as the key
   }
-  /** Boolean: If holding item, then return true
-  * @param name String name of object
-  * @return boolean - T/F if player is holding object
-  */
+
+  /**
+   * Boolean: If holding item, then return true
+   * 
+   * @param name String name of object
+   * @return boolean - T/F if player is holding object
+   */
   public boolean holding(String name) {
     if (inventory.containsKey(name)) {
-      //System.out.println("\nYou are in possession of the " + name + ".\n");
+      // System.out.println("\nYou are in possession of the " + name + ".\n");
       return true;
     } else {
       System.out.println("\nYou are NOT in possession of the " + name + ".");
       return false;
     }
   }
-  /** Boolean Checks if player has the necessary number of conversations 
-  * @return boolean T/F if player has conversed enough
-  */
+
+  /**
+   * Boolean Checks if player has the necessary number of conversations
+   * 
+   * @return boolean T/F if player has conversed enough
+   */
   public boolean metPassengers() {
     if (n_convos >= train.cars[location].carPassengers.size()) {
       return true;
@@ -53,9 +66,11 @@ public class Player {
       return false;
     }
   }
-  /** Method adds 1 to players location if conditions are met.
-  * Each car is one space. player starts at location=0 
-  */
+
+  /**
+   * Method adds 1 to players location if conditions are met.
+   * Each car is one space. player starts at location=0
+   */
   public void nextCar() {
     if (location <= 1) {
       location++;
@@ -66,16 +81,17 @@ public class Player {
       if (location == 2) {
         ultimate_car = true;
         drop("KEYCARD");
-        System.out.println("As you step through the door, you drop the keycard between cars. No going back now."); 
+        System.out.println("As you step through the door, you drop the keycard between cars. No going back now.");
         lookAround();
         System.out.println(
-          "\n" + "You are immediately surprised by the conductor, who grabs your shoulders and shakes you...");
-        talkTo("CONDUCTOR");  
+            "\n" + "You are immediately surprised by the conductor, who grabs your shoulders and shakes you...");
+        talkTo("CONDUCTOR");
         System.out.println("You can no longer explore the train, for now you have a choice.\n" +
-          "You must either `jump` from the train, or `submit` to whatever fate awaits the train and its passengers.\n");
+            "You must either `jump` from the train, or `submit` to whatever fate awaits the train and its passengers.\n");
       }
-    } 
+    }
   }
+
   /** Method subtracts one from players location */
   public void previousCar() {
     if (location == 0) {
@@ -88,15 +104,16 @@ public class Player {
     }
     if (location == 2) {
       System.out.println("It is time for the ultimatium.\n" +
-        "You must either `jump` the train or `submit` to what's left of your lifetime spent on the train, before it ends in a furry crash.\n");
+          "You must either `jump` the train or `submit` to what's left of your lifetime spent on the train, before it ends in a furry crash.\n");
     }
     if (location == 3) {
       System.out.println("You have left the train, you cannot get back on");
     }
   }
+
   /** Method changes the location to 3 if allowed */
   public void exitTrain() {
-    if (location <2) {
+    if (location < 2) {
       System.out.println("You cannot exit the train from this car");
     }
     if (location == 2) {
@@ -107,9 +124,13 @@ public class Player {
       System.out.println("You're already outside of the train");
     }
   }
-  /** Method prints out dialogue of person player is trying to talk to or says if they are not in the car
-  * @param name String holds name of person to talk to
-  */
+
+  /**
+   * Method prints out dialogue of person player is trying to talk to or says if
+   * they are not in the car
+   * 
+   * @param name String holds name of person to talk to
+   */
   public void talkTo(String name) {
     if (train.cars[location].carPassengers.containsKey(name)) {
       Passenger p = train.cars[location].getPassenger(name);
@@ -119,6 +140,7 @@ public class Player {
       System.out.println(name + " is not in this car.\n");
     }
   }
+
   /** Method prints out description of location */
   public void lookAround() {
     if (location >= 0 && location <= 3) {
@@ -165,9 +187,12 @@ public class Player {
       System.out.println("Your location is: " + location + "\n");
     }
   }
-  /** Method adds object to inventory or returns an error statement
-  * @param item_name String name of object player is trying to pick up
-  */
+
+  /**
+   * Method adds object to inventory or returns an error statement
+   * 
+   * @param item_name String name of object player is trying to pick up
+   */
   public void pickUp(String item_name) {
     if (train.cars[this.location].carItems.containsKey(item_name)) {
       Item i = train.cars[this.location].carItems.get(item_name);
@@ -182,9 +207,12 @@ public class Player {
       }
     }
   }
-  /** Method removes item from inventory or prints error statement
-  * @param item_name string name of item to be dropped
-  */
+
+  /**
+   * Method removes item from inventory or prints error statement
+   * 
+   * @param item_name string name of item to be dropped
+   */
   public void drop(String item_name) {
     if (this.inventory.containsKey(item_name)) {
       Item i = inventory.get(item_name); // RYAN: does this happen in the right order? or is it necessary?
@@ -195,9 +223,12 @@ public class Player {
       System.out.println("Please enter valid item name.\n");
     }
   }
-  /** Method Prints description of object 
-  * @param name string with name of object to inspect
-  */
+
+  /**
+   * Method Prints description of object
+   * 
+   * @param name string with name of object to inspect
+   */
   public void inspect(String name) {
     // if item/person exists in game
     if (train.cars[this.location].carItems.containsKey(name) || inventory.containsKey(name)
@@ -218,10 +249,12 @@ public class Player {
       System.out.println("There is no item/passenger called " + name + " here.\n");
     }
   }
+
   /** Method prints inventory */
   public void checkPockets() {
     System.out.println("\nYou find: " + this.inventory.keySet() + "\n");
   }
+
   /** Method prints out all possible commands at that moment */
   public void help() {
     System.out.println(
@@ -229,9 +262,12 @@ public class Player {
             "They bestow upon you the wisdom of available action.");
     System.out.println(train.cars[location].methods + "\n");
   }
-  /** Method performs different actions based on which object is being used
-  * @param object string containing object to be used
-  */
+
+  /**
+   * Method performs different actions based on which object is being used
+   * 
+   * @param object string containing object to be used
+   */
   public void use(String object) {
     if (object.equals("LASER")) {
       if (location == 3) {
@@ -240,17 +276,16 @@ public class Player {
                 + "A strong red beam shoots from one end, casting a bright red dot which you notice immediately captures the beast's attention.\n"
                 + "Using the force of your sheer strength and adrenaline you slowly shift the front of the laser to move the dot's location away from the tracks.\n"
                 + "The beast eagerly follows the dot, swatting and pouncing with it's massive dangerous paws.\n"
-                + "You've done it! You've saved the train!\n\n" 
+                + "You've done it! You've saved the train!\n\n"
                 + "The passengers will forever remember you for your heroic and brave choice to leave the train.\n"
                 + "YOU HAVE WON ZONK\n");
         win_zonk = true;
       } else {
         System.out.println("There is no laser around to use");
       }
-    }
-    else if (object.equals("KEYCARD") && inventory.containsKey("KEYCARD")) {
+    } else if (object.equals("KEYCARD") && inventory.containsKey("KEYCARD")) {
       if (holding("KEYCARD") && metPassengers()) {
-         nextCar();
+        nextCar();
       } else if (!metPassengers()) {
         System.out.println("The party is still young! Make sure you've fully mingled with the passengers!\n");
       }
